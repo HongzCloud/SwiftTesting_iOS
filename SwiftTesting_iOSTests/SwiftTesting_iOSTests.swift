@@ -10,8 +10,17 @@ import Testing
 
 struct SwiftTesting_iOSTests {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    let viewModel = ViewModel()
+    
+    @Test("Check test function") func example() async throws {
+        
+        #expect(viewModel.numberThree() == 3)
     }
 
+    @Test("Check test function 2") func example2() {
+        
+        try? #require(viewModel.numberThree() == 2)
+        // require에서 실패하여 아래 코드는 실행 안됨
+        #expect(viewModel.numberThree() == 3)
+    }
 }
